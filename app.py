@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, abort
+from flask import Flask, render_template, send_from_directory, abort, request
 import os
 from pathlib import Path
 
@@ -74,6 +74,171 @@ def cloned_site(filename=''):
     except Exception as e:
         abort(404)
 
+# Rutas de fallback para recursos estáticos del sitio xqazprog clonado
+@app.route('/cloned-site/static/<path:filename>')
+def cloned_site_static(filename):
+    """Maneja archivos estáticos del sitio clonado xqazprog"""
+    static_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'static')
+    try:
+        return send_from_directory(static_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/cloned-site/media/<path:filename>')  
+def cloned_site_media(filename):
+    """Maneja archivos de media del sitio clonado xqazprog"""
+    media_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'media')
+    try:
+        return send_from_directory(media_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/cloned-site/images/<path:filename>')
+def cloned_site_images(filename):
+    """Maneja archivos de imágenes del sitio clonado xqazprog"""
+    images_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'images')
+    try:
+        return send_from_directory(images_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/cloned-site/css/<path:filename>')
+def cloned_site_css(filename):
+    """Maneja archivos CSS directos del sitio clonado xqazprog"""
+    css_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'css')
+    try:
+        return send_from_directory(css_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/cloned-site/js/<path:filename>')
+def cloned_site_js(filename):
+    """Maneja archivos JS directos del sitio clonado xqazprog"""
+    js_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'js')
+    try:
+        return send_from_directory(js_path, filename)
+    except Exception:
+        abort(404)
+
+# Rutas adicionales para manejar referencias absolutas comunes
+@app.route('/static/<path:filename>')
+def handle_root_static(filename):
+    """Maneja referencias a /static/ - primero intenta sitio clonado, luego Flask"""
+    # Primero intentar servir desde el sitio clonado xqazprog
+    static_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'static')
+    cloned_file_path = os.path.join(static_path, filename)
+    
+    if os.path.exists(cloned_file_path):
+        try:
+            return send_from_directory(static_path, filename)
+        except Exception:
+            pass
+    
+    # Si no existe en sitio clonado, intentar sitio metadatos
+    metadatos_static_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'static')
+    metadatos_file_path = os.path.join(metadatos_static_path, filename)
+    
+    if os.path.exists(metadatos_file_path):
+        try:
+            return send_from_directory(metadatos_static_path, filename)
+        except Exception:
+            pass
+    
+    # Si no existe en sitios clonados, usar static normal de Flask
+    try:
+        return send_from_directory(app.static_folder, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/media/<path:filename>')
+def handle_root_media(filename):
+    """Maneja referencias a /media/ - primero intenta sitio clonado"""
+    # Primero intentar servir desde el sitio clonado xqazprog
+    media_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'media')
+    cloned_file_path = os.path.join(media_path, filename)
+    
+    if os.path.exists(cloned_file_path):
+        try:
+            return send_from_directory(media_path, filename)
+        except Exception:
+            pass
+    
+    # Si no existe, intentar sitio metadatos
+    metadatos_media_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'media')
+    metadatos_file_path = os.path.join(metadatos_media_path, filename)
+    
+    if os.path.exists(metadatos_file_path):
+        try:
+            return send_from_directory(metadatos_media_path, filename)
+        except Exception:
+            pass
+    
+    abort(404)
+
+# Rutas adicionales para otros paths comunes que pueden aparecer en sitios clonados
+@app.route('/css/<path:filename>')
+def handle_root_css(filename):
+    """Maneja referencias a /css/ directas"""
+    # Intentar servir desde xqazprog
+    css_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'css')
+    if os.path.exists(os.path.join(css_path, filename)):
+        try:
+            return send_from_directory(css_path, filename)
+        except Exception:
+            pass
+    
+    # Intentar desde metadatos
+    metadatos_css_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'css')
+    if os.path.exists(os.path.join(metadatos_css_path, filename)):
+        try:
+            return send_from_directory(metadatos_css_path, filename)
+        except Exception:
+            pass
+    
+    abort(404)
+
+@app.route('/js/<path:filename>')
+def handle_root_js(filename):
+    """Maneja referencias a /js/ directas"""
+    # Intentar servir desde xqazprog
+    js_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'js')
+    if os.path.exists(os.path.join(js_path, filename)):
+        try:
+            return send_from_directory(js_path, filename)
+        except Exception:
+            pass
+    
+    # Intentar desde metadatos
+    metadatos_js_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'js')
+    if os.path.exists(os.path.join(metadatos_js_path, filename)):
+        try:
+            return send_from_directory(metadatos_js_path, filename)
+        except Exception:
+            pass
+    
+    abort(404)
+
+@app.route('/images/<path:filename>')
+def handle_root_images(filename):
+    """Maneja referencias a /images/ directas"""
+    # Intentar servir desde xqazprog
+    images_path = os.path.join(app.root_path, 'xqazprog.pythonanywhere.com', 'images')
+    if os.path.exists(os.path.join(images_path, filename)):
+        try:
+            return send_from_directory(images_path, filename)
+        except Exception:
+            pass
+    
+    # Intentar desde metadatos
+    metadatos_images_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'images')
+    if os.path.exists(os.path.join(metadatos_images_path, filename)):
+        try:
+            return send_from_directory(metadatos_images_path, filename)
+        except Exception:
+            pass
+    
+    abort(404)
+
 # Ruta específica para sitio de metadatos (HTTrack)
 @app.route('/metadatos-site/')
 @app.route('/metadatos-site/<path:filename>')
@@ -114,6 +279,43 @@ def metadatos_site(filename=''):
         abort(404)
         
     except Exception as e:
+        abort(404)
+
+# Rutas de fallback para recursos estáticos del sitio metadatos clonado
+@app.route('/metadatos-site/static/<path:filename>')
+def metadatos_site_static(filename):
+    """Maneja archivos estáticos del sitio clonado metadatos"""
+    static_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'static')
+    try:
+        return send_from_directory(static_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/metadatos-site/media/<path:filename>')  
+def metadatos_site_media(filename):
+    """Maneja archivos de media del sitio clonado metadatos"""
+    media_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'media')
+    try:
+        return send_from_directory(media_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/metadatos-site/css/<path:filename>')
+def metadatos_site_css(filename):
+    """Maneja archivos CSS directos del sitio clonado metadatos"""
+    css_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'css')
+    try:
+        return send_from_directory(css_path, filename)
+    except Exception:
+        abort(404)
+
+@app.route('/metadatos-site/js/<path:filename>')
+def metadatos_site_js(filename):
+    """Maneja archivos JS directos del sitio clonado metadatos"""
+    js_path = os.path.join(app.root_path, 'metadatos.pythonanywhere.com', 'js')
+    try:
+        return send_from_directory(js_path, filename)
+    except Exception:
         abort(404)
 
 # API endpoint para obtener información del curso

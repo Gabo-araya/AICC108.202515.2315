@@ -8,16 +8,20 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
-                <img src="https://via.placeholder.com/800x600/667eea/ffffff?text=HTTrack+Paso+{{ i }}" class="img-fluid mb-3" alt="HTTrack Paso {{ i }}">
-                <p>{% if i == 1 %}Pantalla inicial de HTTrack mostrando las opciones principales para comenzar un nuevo proyecto de clonación de sitio web.
-                   {% elif i == 2 %}Configuración de la URL del sitio web "Metadatos App" como objetivo de clonación.
-                   {% elif i == 3 %}Configuración de las opciones avanzadas de HTTrack incluyendo profundidad de descarga y tipos de archivos.
-                   {% elif i == 4 %}Configuración de filtros para determinar qué tipos de archivos se incluirán o excluirán.
-                   {% elif i == 5 %}Establecimiento de límites de velocidad, tamaño de archivos y conexiones simultáneas.
-                   {% elif i == 6 %}HTTrack iniciando el proceso de descarga del sitio web, conectándose al servidor.
-                   {% elif i == 7 %}Visualización del progreso de descarga mostrando archivos descargados y velocidad de transferencia.
-                   {% elif i == 8 %}Mensaje de finalización exitosa del proceso de clonación con resumen de estadísticas.
-                   {% elif i == 9 %}Explorador de archivos mostrando la estructura completa del sitio web clonado.
+                {% if i <= 8 %}
+                    <img src="{{ url_for('static', filename='images/httrack/httrack_0' + i|string + '.png') }}" class="img-fluid mb-3" alt="HTTrack Paso {{ i }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/800x600/667eea/ffffff?text=HTTrack+Paso+{{ i }}" class="img-fluid mb-3" alt="HTTrack Paso {{ i }}">
+                {% endif %}
+                <p>{% if i == 1 %}Sitio web objetivo para ser clonado
+                   {% elif i == 2 %}Sitio web de descarga de HTTrack
+                   {% elif i == 3 %}Pantalla inicial de HTTrack mostrando las opciones principales para comenzar un nuevo proyecto de clonación de sitio web.
+
+                   {% elif i == 4 %}Configuración del directorio objetivo del proyecto.
+                   {% elif i == 5 %}Evidencia de descarga del proyecto
+                   {% elif i == 6 %}Configuración de la URL del sitio web "Metadatos App" como objetivo de clonación.
+                   {% elif i == 7 %}HTTrack iniciando el proceso de descarga del sitio web, conectándose al servidor. Visualización del progreso de descarga mostrando archivos descargados y velocidad de transferencia.
+                   {% elif i == 8 %}Mensaje de finalización exitosa del proceso de clonación.
                    {% endif %}</p>
             </div>
         </div>
@@ -50,17 +54,22 @@
 </div>
 {% endfor %}
 
-<!-- Vercel Modals -->
+<!-- Pythonanywhere Modals -->
 {% for i in range(1, 10) %}
 <div class="modal fade" id="vercelModal{{ i }}" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Vercel - Paso {{ i }}</h5>
+                <h5 class="modal-title">Pythonanywhere - Paso {{ i }}</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
-                <img src="https://via.placeholder.com/800x600/8a2be2/ffffff?text=Vercel+Paso+{{ i }}" class="img-fluid mb-3" alt="Vercel Paso {{ i }}">
+                <img src="https://via.placeholder.com/800x600/8a2be2/ffffff?text=Vercel+Paso+{{ i }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
+                {% if i <= 8 %}
+                    <img src="{{ url_for('static', filename='images/pythonanywhere/pythonanywhere_0' + i|string + '.png') }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/800x600/667eea/ffffff?text=Pythonanywhere+Paso+{{ i }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
+                {% endif %}
                 <p>{% if i == 1 %}Proceso de creación de cuenta gratuita en Vercel para poder publicar los sitios web clonados.
                    {% elif i == 2 %}Panel principal de Vercel mostrando los proyectos existentes y la opción para crear uno nuevo.
                    {% elif i == 3 %}Interfaz para crear un nuevo proyecto en Vercel con las opciones de importación.
