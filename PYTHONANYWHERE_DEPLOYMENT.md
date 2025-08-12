@@ -30,12 +30,31 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 
 ---
 
-## PASO 1: Subir Archivos
+## PASO 1: Clonar Repositorio y Configurar Archivos
+
+### Opción A: Clonación desde GitHub (Recomendado)
 
 1.  Ve a tu **Dashboard** en PythonAnywhere como `AICC1082025152315`
-2.  Haz clic en la pestaña **"Files"**
-3.  Crea el directorio principal: `mysite` (recomendado por PythonAnywhere)
-4.  Sube TODOS los archivos y carpetas del proyecto
+2.  Haz clic en la pestaña **"Consoles"**
+3.  Inicia una nueva consola **"Bash"**
+4.  Clona el repositorio público:
+    ```bash
+    cd ~
+    git clone https://github.com/Gabo-araya/AICC108.202515.2315.git mysite
+    cd mysite
+    ```
+
+5.  Verifica que todos los archivos se clonaron correctamente:
+    ```bash
+    ls -la
+    # Deberías ver: app.py, wsgi.py, requirements.txt, templates/, static/, etc.
+    ```
+
+### Opción B: Subida Manual de Archivos
+
+1.  Ve a la pestaña **"Files"**
+2.  Crea el directorio: `mysite`
+3.  Sube manualmente todos los archivos del proyecto local
 
 **Estructura completa requerida en PythonAnywhere:**
 
@@ -63,6 +82,16 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 ```
 
 **⚠️ IMPORTANTE:** Los directorios de sitios clonados son esenciales para las demostraciones educativas.
+
+### Verificación Post-Clonación
+
+Después de clonar, verifica que la estructura esté completa:
+```bash
+cd ~/mysite
+find . -name "*.html" | head -10    # Verificar archivos HTML
+ls -la xqazprog.pythonanywhere.com/
+ls -la metadatos.pythonanywhere.com/
+```
 
 ---
 
@@ -111,14 +140,14 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 
 ## PASO 3: Instalar Dependencias
 
-1.  Ve a la pestaña **"Consoles"**
-2.  Inicia una nueva consola **"Bash"**
-3.  Navega al directorio del proyecto:
+1.  **Si clonaste desde GitHub:** Ya tienes la consola abierta en `~/mysite`
+2.  **Si subiste manualmente:** Ve a **"Consoles"** → nueva consola **"Bash"** → `cd mysite`
+3.  Instala las dependencias:
     ```bash
-    cd mysite
-    ```
-4.  Instala las dependencias (usar `--user` en cuenta gratuita):
-    ```bash
+    # Asegúrate de estar en el directorio correcto
+    pwd  # Debería mostrar: /home/AICC1082025152315/mysite
+    
+    # Instalar dependencias
     pip3.10 install --user -r requirements.txt
     ```
     
@@ -223,4 +252,31 @@ ls -la /home/AICC1082025152315/mysite/xqazprog.pythonanywhere.com/
 ls -la /home/AICC1082025152315/mysite/metadatos.pythonanywhere.com/
 ```
 
+### Actualización del Código
+
+Para actualizar la aplicación con cambios del repositorio:
+```bash
+cd ~/mysite
+git pull origin main
+# Luego hacer "Reload" en la pestaña Web
+```
+
 ¡Aplicación del curso lista para educación en Ethical Hacking! 🛡️🚀
+
+---
+
+## 📋 Resumen del Proceso
+
+**Método recomendado (Git):**
+1. Consola Bash → `git clone https://github.com/Gabo-araya/AICC108.202515.2315.git mysite`
+2. Web tab → Crear nueva app Flask
+3. Configurar WSGI → Copiar código proporcionado
+4. `pip3.10 install --user -r requirements.txt`
+5. Configurar static files
+6. Reload → Probar URLs
+
+**Ventajas de usar Git:**
+- ✅ Descarga automática de todos los archivos
+- ✅ Preserva estructura de directorios
+- ✅ Fácil actualización con `git pull`
+- ✅ No hay riesgo de archivos faltantes

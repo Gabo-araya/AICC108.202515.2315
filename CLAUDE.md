@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Flask web application for an Ethical Hacking course (AICC108.202515.2315.EL.ON) featuring a futuristic cybersecurity-themed design. The application demonstrates website cloning techniques using HTTrack and wget, along with deployment strategies to Vercel, all presented as educational content for defensive cybersecurity purposes.
+This is a Flask web application for an Ethical Hacking course (AICC108.202515.2315.EL.ON) featuring a futuristic cybersecurity-themed design. The application demonstrates website cloning techniques using HTTrack and wget, along with deployment strategies to Vercel and PythonAnywhere, all presented as educational content for defensive cybersecurity purposes.
+
+**Repository:** https://github.com/Gabo-araya/AICC108.202515.2315
 
 ## Development Commands
 
@@ -48,14 +50,22 @@ vercel
 
 **PythonAnywhere:**
 ```bash
-# Upload files to /home/AICC1082025152315/mysite/
-# Install dependencies in console:
+# Method 1: Clone from GitHub (Recommended)
+cd ~
+git clone https://github.com/Gabo-araya/AICC108.202515.2315.git mysite
 cd mysite
+
+# Method 2: Manual upload to /home/AICC1082025152315/mysite/
+
+# Install dependencies:
 pip3.10 install --user -r requirements.txt
 
 # Configure WSGI file at /var/www/AICC1082025152315_pythonanywhere_com_wsgi.py
 # Set static files mapping in Web tab
 # URL: https://AICC1082025152315.pythonanywhere.com/
+
+# Update application:
+git pull origin main
 ```
 
 ## Architecture
