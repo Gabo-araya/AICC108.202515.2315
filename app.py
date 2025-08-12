@@ -342,5 +342,5 @@ def course_info():
     }
 
 if __name__ == '__main__':
-    # Para desarrollo local
+    # Para desarrollo local - PythonAnywhere no ejecuta este bloque
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
