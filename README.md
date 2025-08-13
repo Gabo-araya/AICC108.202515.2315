@@ -170,12 +170,12 @@ ls -la
 
 ```bash
 # Crear entorno virtual
-python -m venv ethical-hacking-env
+python3.10 -m venv venv
 
 # Activar entorno
-source ethical-hacking-env/bin/activate  # Linux/macOS
-ethical-hacking-env\Scripts\activate     # Windows PowerShell
-ethical-hacking-env\Scripts\activate.bat # Windows CMD
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows PowerShell
+venv\Scripts\activate.bat # Windows CMD
 
 # Verificar activación
 which python  # Debe apuntar al entorno virtual

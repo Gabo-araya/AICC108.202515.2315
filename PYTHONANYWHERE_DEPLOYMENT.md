@@ -40,8 +40,8 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 4.  Clona el repositorio público:
     ```bash
     cd ~
-    git clone https://github.com/Gabo-araya/AICC108.202515.2315.git mysite
-    cd mysite
+    git clone https://github.com/Gabo-araya/AICC108.202515.2315.git sitio
+    cd sitio
     ```
 
 5.  Verifica que todos los archivos se clonaron correctamente:
@@ -53,15 +53,15 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 ### Opción B: Subida Manual de Archivos
 
 1.  Ve a la pestaña **"Files"**
-2.  Crea el directorio: `mysite`
+2.  Crea el directorio: `sitio`
 3.  Sube manualmente todos los archivos del proyecto local
 
 **Estructura completa requerida en PythonAnywhere:**
 
 ```
-/home/AICC1082025152315/mysite/
+/home/AICC1082025152315/sitio/
 ├── app.py                           # Aplicación Flask
-├── wsgi.py                          # Configuración WSGI 
+├── wsgi.py                          # Configuración WSGI
 ├── requirements.txt                 # Dependencias
 ├── templates/
 │   ├── index.html                   # Página principal
@@ -87,7 +87,7 @@ Esta guía te mostrará cómo desplegar la aplicación Flask del curso de Ethica
 
 Después de clonar, verifica que la estructura esté completa:
 ```bash
-cd ~/mysite
+cd ~/sitio
 find . -name "*.html" | head -10    # Verificar archivos HTML
 ls -la xqazprog.pythonanywhere.com/
 ls -la metadatos.pythonanywhere.com/
@@ -120,7 +120,7 @@ ls -la metadatos.pythonanywhere.com/
     import os
 
     # Add your project directory to the sys.path
-    project_home = '/home/AICC1082025152315/mysite'
+    project_home = '/home/AICC1082025152315/sitio'
     if project_home not in sys.path:
         sys.path.insert(0, project_home)
 
@@ -136,21 +136,37 @@ ls -la metadatos.pythonanywhere.com/
 
 5.  Guarda el archivo
 
+
+### Entorno Virtual (Opcional pero Recomendado)
+
+```bash
+# Crear entorno virtual
+python3.10 -m venv venv
+
+# Activar entorno
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows PowerShell
+venv\Scripts\activate.bat # Windows CMD
+
+# Verificar activación
+which python  # Debe apuntar al entorno virtual
+```
+
 ---
 
 ## PASO 3: Instalar Dependencias
 
-1.  **Si clonaste desde GitHub:** Ya tienes la consola abierta en `~/mysite`
-2.  **Si subiste manualmente:** Ve a **"Consoles"** → nueva consola **"Bash"** → `cd mysite`
+1.  **Si clonaste desde GitHub:** Ya tienes la consola abierta en `~/sitio`
+2.  **Si subiste manualmente:** Ve a **"Consoles"** → nueva consola **"Bash"** → `cd sitio`
 3.  Instala las dependencias:
     ```bash
     # Asegúrate de estar en el directorio correcto
-    pwd  # Debería mostrar: /home/AICC1082025152315/mysite
-    
+    pwd  # Debería mostrar: /home/AICC1082025152315/sitio
+
     # Instalar dependencias
-    pip3.10 install --user -r requirements.txt
+    pip3.10 install -r requirements.txt
     ```
-    
+
 **Dependencias que se instalarán:**
 - Flask==3.0.0
 - Werkzeug==3.0.1
@@ -170,14 +186,14 @@ ls -la metadatos.pythonanywhere.com/
 
 **Mapeo principal:**
 - **URL:** `/static/`
-- **Directory:** `/home/AICC1082025152315/mysite/static`
+- **Directory:** `/home/AICC1082025152315/sitio/static`
 
 **Mapeos adicionales para sitios clonados:**
 - **URL:** `/cloned-site/static/`
-- **Directory:** `/home/AICC1082025152315/mysite/xqazprog.pythonanywhere.com/static`
+- **Directory:** `/home/AICC1082025152315/sitio/xqazprog.pythonanywhere.com/static`
 
-- **URL:** `/metadatos-site/static/`  
-- **Directory:** `/home/AICC1082025152315/mysite/metadatos.pythonanywhere.com/static`
+- **URL:** `/metadatos-site/static/`
+- **Directory:** `/home/AICC1082025152315/sitio/metadatos.pythonanywhere.com/static`
 
 ⚠️ **Nota:** La aplicación Flask maneja automáticamente el enrutamiento de archivos estáticos de sitios clonados, pero estos mapeos mejoran el rendimiento.
 
@@ -187,7 +203,7 @@ ls -la metadatos.pythonanywhere.com/
 
 1.  **Verificar estructura en Files:**
     ```
-    /home/AICC1082025152315/mysite/
+    /home/AICC1082025152315/sitio/
     ├── xqazprog.pythonanywhere.com/     ✓ Debe existir
     └── metadatos.pythonanywhere.com/    ✓ Debe existir
     ```
@@ -196,7 +212,7 @@ ls -la metadatos.pythonanywhere.com/
     - `AICC1082025152315.pythonanywhere.com/` → Página principal del curso
     - `AICC1082025152315.pythonanywhere.com/cloned-site/` → Demo sitio wget
     - `AICC1082025152315.pythonanywhere.com/metadatos-site/` → Demo sitio HTTrack
-    - `AICC1082025152315.pythonanywhere.com/api/course-info` → API del curso
+
 
 ---
 
@@ -207,7 +223,7 @@ ls -la metadatos.pythonanywhere.com/
     - **Principal:** `https://AICC1082025152315.pythonanywhere.com/`
     - **Sitio clonado wget:** `https://AICC1082025152315.pythonanywhere.com/cloned-site/`
     - **Sitio clonado HTTrack:** `https://AICC1082025152315.pythonanywhere.com/metadatos-site/`
-    - **API:** `https://AICC1082025152315.pythonanywhere.com/api/course-info`
+
 
 **✅ La aplicación está lista cuando:**
 - La página principal muestra el diseño cyber del curso
@@ -222,13 +238,13 @@ ls -la metadatos.pythonanywhere.com/
 ### Errores Comunes
 
 **Error "ModuleNotFoundError":**
-- Verifica ruta WSGI: `/home/AICC1082025152315/mysite`
+- Verifica ruta WSGI: `/home/AICC1082025152315/sitio`
 - Reinstala dependencias: `pip3.10 install --user -r requirements.txt`
 
 **Error "No such file or directory" para sitios clonados:**
 - Verifica que existan los directorios:
-  - `/home/AICC1082025152315/mysite/xqazprog.pythonanywhere.com/`
-  - `/home/AICC1082025152315/mysite/metadatos.pythonanywhere.com/`
+  - `/home/AICC1082025152315/sitio/xqazprog.pythonanywhere.com/`
+  - `/home/AICC1082025152315/sitio/metadatos.pythonanywhere.com/`
 - Los sitios clonados son ESENCIALES para la aplicación
 
 **Error 404 en rutas `/cloned-site/` o `/metadatos-site/`:**
@@ -247,16 +263,16 @@ ls -la metadatos.pythonanywhere.com/
 
 ```bash
 # En consola PythonAnywhere, verificar archivos críticos:
-ls -la /home/AICC1082025152315/mysite/
-ls -la /home/AICC1082025152315/mysite/xqazprog.pythonanywhere.com/
-ls -la /home/AICC1082025152315/mysite/metadatos.pythonanywhere.com/
+ls -la /home/AICC1082025152315/sitio/
+ls -la /home/AICC1082025152315/sitio/xqazprog.pythonanywhere.com/
+ls -la /home/AICC1082025152315/sitio/metadatos.pythonanywhere.com/
 ```
 
 ### Actualización del Código
 
 Para actualizar la aplicación con cambios del repositorio:
 ```bash
-cd ~/mysite
+cd ~/sitio
 git pull origin main
 # Luego hacer "Reload" en la pestaña Web
 ```
@@ -268,7 +284,7 @@ git pull origin main
 ## 📋 Resumen del Proceso
 
 **Método recomendado (Git):**
-1. Consola Bash → `git clone https://github.com/Gabo-araya/AICC108.202515.2315.git mysite`
+1. Consola Bash → `git clone https://github.com/Gabo-araya/AICC108.202515.2315.git sitio`
 2. Web tab → Crear nueva app Flask
 3. Configurar WSGI → Copiar código proporcionado
 4. `pip3.10 install --user -r requirements.txt`

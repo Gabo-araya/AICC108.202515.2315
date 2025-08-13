@@ -64,21 +64,20 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">
-                <img src="https://via.placeholder.com/800x600/8a2be2/ffffff?text=Vercel+Paso+{{ i }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
-                {% if i <= 8 %}
+                {% if i <= 9 %}
                     <img src="{{ url_for('static', filename='images/pythonanywhere/pythonanywhere_0' + i|string + '.png') }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
                 {% else %}
                     <img src="https://via.placeholder.com/800x600/667eea/ffffff?text=Pythonanywhere+Paso+{{ i }}" class="img-fluid mb-3" alt="Pythonanywhere Paso {{ i }}">
                 {% endif %}
-                <p>{% if i == 1 %}Proceso de creación de cuenta gratuita en Vercel para poder publicar los sitios web clonados.
-                   {% elif i == 2 %}Panel principal de Vercel mostrando los proyectos existentes y la opción para crear uno nuevo.
-                   {% elif i == 3 %}Interfaz para crear un nuevo proyecto en Vercel con las opciones de importación.
-                   {% elif i == 4 %}Proceso de subida de los archivos del sitio web clonado arrastrando la carpeta completa.
-                   {% elif i == 5 %}Configuración de las opciones de deployment incluyendo nombre del proyecto.
-                   {% elif i == 6 %}Vercel procesando los archivos y creando el deployment del sitio web clonado.
-                   {% elif i == 7 %}Confirmación de que el deployment fue exitoso con el sitio web disponible públicamente.
-                   {% elif i == 8 %}Vercel generando automáticamente una URL única para acceder al sitio web clonado.
-                   {% elif i == 9 %}Sitio web clonado ahora accesible públicamente completando el proceso de publicación.
+                <p>{% if i == 1 %}Página de precios de PythonAnywhere. Se selecciona la opción de crear una cuenta gratuita.
+                   {% elif i == 2 %}Página de creación de una cuenta gratuita.
+                   {% elif i == 3 %}Página de confirmación de la cuenta creada.
+                   {% elif i == 4 %}Para configurar la aplicación se debe ir a la sección "Web".
+                   {% elif i == 5 %}Se debe presionar el botón "Add a new web app" y luego el botón "Next".
+                   {% elif i == 6 %}Se debe presionar "Manual configuration".
+                   {% elif i == 7 %}Desde la página de configuración de la aplicación, se puede recargar la aplicación.
+                   {% elif i == 8 %}Se deben agregar las configuraciones necesarias para la aplicación.
+                   {% elif i == 9 %}Vista de comandos de terminal de clonación de proyecto y configuración de la aplicación.
                    {% endif %}</p>
             </div>
         </div>
