@@ -7,86 +7,21 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.2-purple.svg)](https://getbootstrap.com/)
 [![License](https://img.shields.io/badge/License-Educational-yellow.svg)](#licencia)
 
-## 📋 Tabla de Contenidos
-
-- [🎯 Descripción del Proyecto](#-descripción-del-proyecto)
-- [✨ Características](#-características)
-- [🚀 Demo en Vivo](#-demo-en-vivo)
-- [🔧 Tecnologías](#-tecnologías)
-- [📦 Instalación](#-instalación)
-- [🌐 Deployment](#-deployment)
-- [📚 Uso de la Aplicación](#-uso-de-la-aplicación)
-- [🎓 Contenido Educativo](#-contenido-educativo)
-- [🔒 Aspectos de Seguridad](#-aspectos-de-seguridad)
-- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
-- [🤝 Contribuir](#-contribuir)
-- [📄 Licencia](#-licencia)
-
 ## 🎯 Descripción del Proyecto
 
-Esta aplicación Flask presenta un curso interactivo de **Ethical Hacking** diseñado para educación en ciberseguridad defensiva. La aplicación demuestra técnicas de clonación de sitios web utilizando herramientas como HTTrack y wget, todo presentado en un diseño futurista con temática cyberpunk.
+Esta aplicación Flask presenta técnicas de clonación de sitios web utilizando herramientas HTTrack y wget.
 
 ### 🎯 Objetivos Educativos
 
 - **Comprensión de ataques de phishing** - Entender cómo funcionan para defenderse mejor
 - **Técnicas de clonación web** - Aprender métodos de replicación de sitios (HTTrack, wget)
-- **Deployment en la nube** - Estrategias de despliegue en Vercel y PythonAnywhere
-- **Defensa cibernética** - Protocolos y medidas de seguridad
+- **Deployment en la nube** - Estrategias de despliegue en PythonAnywhere
 
 > ⚠️ **IMPORTANTE**: Este proyecto es exclusivamente para **fines educativos** y **defensa cibernética**. No debe utilizarse para actividades maliciosas.
-
-## ✨ Características
-
-### 🎨 Diseño y UI/UX
-- **Interfaz cyberpunk futurista** con animaciones CSS avanzadas
-- **Tema dark responsive** optimizado para todos los dispositivos
-- **Efectos visuales dinámicos** - Matrix rain, partículas, glass morphism
-- **Tipografía especializada** - Orbitron y Rajdhani para estética cyber
-- **27 modales interactivos** con contenido educativo paso a paso
-
-### 🔧 Funcionalidades Técnicas
-- **Aplicación Flask monolítica** con arquitectura modular
-- **Servidor de sitios clonados integrado** - Sirve demostraciones en vivo
-- **API RESTful** (`/api/course-info`) para metadatos del curso
-- **Enrutamiento inteligente** con fallback automático para recursos
-- **Compatibilidad multi-plataforma** - Vercel, PythonAnywhere, local
-
-### 📚 Contenido Educativo Interactivo
-
-#### 🎯 Módulo 1: Fundamentos de Phishing
-- Introducción a técnicas de ingeniería social
-- Identificación de sitios fraudulentos
-- Casos de estudio reales
-
-#### 🛠️ Módulo 2: HTTrack - Clonación GUI
-- Tutorial paso a paso con capturas de pantalla
-- Configuración avanzada de mirrors
-- Mejores prácticas y limitaciones
-
-#### 💻 Módulo 3: wget - Clonación por Terminal
-- Comandos esenciales y opciones avanzadas
-- Scripts automatizados para clonación recursiva
-- Manejo de autenticación y cookies
-
-#### ☁️ Módulo 4: Deployment en la Nube
-- Configuración de Vercel para aplicaciones Flask
-- Setup completo de PythonAnywhere
-- Estrategias de CI/CD
-
-#### 🛡️ Módulo 5: Cyber Defense
-- Protocolos de detección de phishing
-- Implementación de medidas preventivas
-- Monitoreo y respuesta a incidentes
 
 ### 🎪 Sitios de Demostración
 - **`/cloned-site/`** - Demo de sitio clonado con wget (xqazprog.pythonanywhere.com)
 - **`/metadatos-site/`** - Demo de sitio clonado con HTTrack (metadatos.pythonanywhere.com)
-
-## 🚀 Demo en Vivo
-
-- **🌐 Producción:** `https://AICC1082025152315.pythonanywhere.com/`
-- **🔄 Desarrollo:** `https://vercel-app-url.vercel.app/`
-- **📋 API:** `https://AICC1082025152315.pythonanywhere.com/api/course-info`
 
 ## 🔧 Tecnologías
 
@@ -103,7 +38,6 @@ Esta aplicación Flask presenta un curso interactivo de **Ethical Hacking** dise
 - **Vanilla JavaScript** - Efectos cyber y animaciones
 
 ### Deployment & DevOps
-- **Vercel** - Serverless deployment con auto-scaling
 - **PythonAnywhere** - Hosting tradicional con WSGI
 - **Git/GitHub** - Control de versiones y CI/CD
 
@@ -155,7 +89,7 @@ python --version  # Debe ser 3.10+
 
 ```bash
 # Clonar con todos los submódulos
-git clone --recursive https://github.com/Gabo-araya/AICC108.202515.2315.git
+git clone https://github.com/Gabo-araya/AICC108.202515.2315.git
 
 # Navegar al directorio
 cd AICC108.202515.2315
@@ -194,19 +128,7 @@ pip install -r requirements.txt
 pip list | grep Flask  # Debe mostrar Flask==3.0.0
 ```
 
-#### 5. Configuración de Variables de Entorno (Opcional)
-
-```bash
-# Crear archivo .env (opcional)
-touch .env
-
-# Agregar variables de configuración
-echo "FLASK_ENV=development" >> .env
-echo "FLASK_DEBUG=True" >> .env
-echo "PORT=5000" >> .env
-```
-
-#### 6. Verificación de la Instalación
+#### 5. Verificación de la Instalación
 
 ```bash
 # Ejecutar tests básicos
@@ -220,7 +142,7 @@ ls -la xqazprog.pythonanywhere.com/index.html
 ls -la metadatos.pythonanywhere.com/index.html
 ```
 
-#### 7. Ejecución
+#### 6. Ejecución
 
 ```bash
 # Método 1: Ejecutar directamente
@@ -232,41 +154,6 @@ flask run
 
 # Método 3: Con configuración específica
 python app.py --host=0.0.0.0 --port=8080
-```
-
-### 🚨 Troubleshooting de Instalación
-
-#### Error: "ModuleNotFoundError: No module named 'flask'"
-```bash
-# Solución: Verificar que el entorno virtual esté activado
-pip install flask==3.0.0
-```
-
-#### Error: "Port 5000 already in use"
-```bash
-# Solución: Usar puerto diferente
-python app.py  # Automáticamente busca puerto disponible
-# O cambiar variable PORT en .env
-```
-
-#### Error: Sitios clonados no cargan (404)
-```bash
-# Verificar que los directorios existan
-ls -la xqazprog.pythonanywhere.com/
-ls -la metadatos.pythonanywhere.com/
-
-# Si faltan, el repositorio podría estar incompleto
-git status
-git pull origin main
-```
-
-#### Error: Estilos CSS no cargan
-```bash
-# Verificar ruta de archivos estáticos
-ls -la static/css/cyber-style.css
-ls -la static/js/cyber-effects.js
-
-# Limpiar caché del navegador: Ctrl+F5
 ```
 
 ## 🌐 Deployment
@@ -332,69 +219,6 @@ git pull origin main
 # Luego hacer "Reload" en Web dashboard
 ```
 
-### 🐳 Docker (Para Cualquier Plataforma)
-
-#### Dockerfile
-
-```dockerfile
-FROM python:3.10-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-EXPOSE 5000
-
-CMD ["python", "app.py"]
-```
-
-#### Docker Compose
-
-```yaml
-version: '3.8'
-services:
-  ethical-hacking-app:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
-    volumes:
-      - .:/app
-```
-
-#### Comandos Docker
-
-```bash
-# Build
-docker build -t ethical-hacking-course .
-
-# Run
-docker run -p 5000:5000 ethical-hacking-course
-
-# Con docker-compose
-docker-compose up -d
-```
-
-### 🔧 Deployment Troubleshooting
-
-#### Error: "Module not found" en PythonAnywhere
-```bash
-# Verificar path en WSGI y dependencias
-which python3.10
-pip3.10 list | grep Flask
-```
-
-#### Error: Sitios clonados 404
-```bash
-# Verificar estructura de directorios
-ls -la xqazprog.pythonanywhere.com/index.html
-ls -la metadatos.pythonanywhere.com/index.html
-```
-
 ### 🎯 Funcionalidades Interactivas
 
 #### 🌐 Demostraciones en Vivo
@@ -420,37 +244,6 @@ Características:
 - Uploads y media files
 - Estructura completa preservada
 ```
-
-
-## 🤝 Contribuir
-
-### 🛠️ Configuración para Desarrollo
-
-```bash
-# 1. Fork del repositorio en GitHub
-git clone https://github.com/Gabo-araya/AICC108.202515.2315.git
-cd AICC108.202515.2315
-
-# 2. Crear rama de desarrollo
-git checkout -b feature/nueva-funcionalidad
-
-# 3. Configurar entorno de desarrollo
-python -m venv dev-env
-source dev-env/bin/activate
-pip install -r requirements.txt
-
-# 4. Hacer cambios y probar
-python app.py
-
-# 5. Commit y push
-git add .
-git commit -m "feat: descripción de cambios"
-git push origin feature/nueva-funcionalidad
-
-# 6. Crear Pull Request en GitHub
-```
-
----
 
 ## 🏆 Reconocimientos
 
