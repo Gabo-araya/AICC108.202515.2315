@@ -1,8 +1,8 @@
-from flask import Flask, render_template, send_from_directory, abort, request
+from flask import Flask, render_template, send_from_directory, abort, request, redirect
 import os
 from pathlib import Path
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=None)
 
 @app.route('/')
 def index():
@@ -121,7 +121,7 @@ def cloned_site_js(filename):
         abort(404)
 
 # Rutas adicionales para manejar referencias absolutas comunes
-@app.route('/static/<path:filename>')
+@app.route('/static/<path:filename>', endpoint='static')
 def handle_root_static(filename):
     """Maneja referencias a /static/ - primero intenta sitio clonado, luego Flask"""
     # Primero intentar servir desde el sitio clonado xqazprog
@@ -130,7 +130,10 @@ def handle_root_static(filename):
     
     if os.path.exists(cloned_file_path):
         try:
-            return send_from_directory(static_path, filename)
+            # Para archivos anidados, necesitamos el directorio base correcto
+            file_dir = os.path.dirname(cloned_file_path)
+            file_name = os.path.basename(cloned_file_path)
+            return send_from_directory(file_dir, file_name)
         except Exception:
             pass
     
@@ -140,13 +143,16 @@ def handle_root_static(filename):
     
     if os.path.exists(metadatos_file_path):
         try:
-            return send_from_directory(metadatos_static_path, filename)
+            file_dir = os.path.dirname(metadatos_file_path)
+            file_name = os.path.basename(metadatos_file_path)
+            return send_from_directory(file_dir, file_name)
         except Exception:
             pass
     
     # Si no existe en sitios clonados, usar static normal de Flask
     try:
-        return send_from_directory(app.static_folder, filename)
+        flask_static_path = os.path.join(app.root_path, 'static')
+        return send_from_directory(flask_static_path, filename)
     except Exception:
         abort(404)
 
@@ -317,6 +323,13 @@ def metadatos_site_js(filename):
         return send_from_directory(js_path, filename)
     except Exception:
         abort(404)
+
+# Rutas para manejar CDN que son interceptadas por sitios clonados
+@app.route('/cdn.jsdelivr.net/<path:filename>')
+def handle_jsdelivr_cdn(filename):
+    """Redirige URLs de CDN jsdelivr interceptadas a la URL correcta"""
+    cdn_url = f"https://cdn.jsdelivr.net/{filename}"
+    return redirect(cdn_url, code=301)
 
 # API endpoint para obtener información del curso
 @app.route('/api/course-info')
