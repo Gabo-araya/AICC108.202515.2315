@@ -422,67 +422,13 @@ Características:
 ```
 
 
-## 📁 Estructura del Proyecto
-
-```
-AICC108.202515.2315/
-├── 📄 app.py                          # Aplicación Flask principal
-├── 📄 wsgi.py                         # Configuración WSGI para deployment
-├── 📄 requirements.txt                # Dependencias de Python
-├── 📄 README.md                       # Este archivo
-├── 📄 PYTHONANYWHERE_DEPLOYMENT.md    # Guía específica de PythonAnywhere
-│
-├── 📁 templates/                      # Plantillas Jinja2
-│   ├── 📄 index.html                  # Página principal del curso
-│   └── 📄 modals.html                 # 27 modales educativos
-│
-├── 📁 static/                         # Recursos estáticos de la aplicación
-│   ├── 📁 css/
-│   │   └── 📄 cyber-style.css         # Estilos cyberpunk personalizados
-│   ├── 📁 js/
-│   │   └── 📄 cyber-effects.js        # Efectos visuales y animaciones
-│   └── 📁 images/                     # Capturas de pantalla del curso
-│       ├── 📁 httrack/                # Screenshots de HTTrack (9 imágenes)
-│       ├── 📁 wget/                   # Screenshots de wget (3 imágenes)
-│       └── 📁 pythonanywhere/         # Screenshots de deployment
-│
-├── 📁 xqazprog.pythonanywhere.com/    # 🎯 SITIO CLONADO CON WGET
-│   ├── 📄 index.html                  # Página principal clonada
-│   ├── 📁 blog/                       # Sistema de blog completo
-│   │   ├── 📁 1/, 📁 2/, 📁 3/         # Posts individuales
-│   │   └── 📄 index.html              # Índice del blog
-│   ├── 📁 panel/                      # Panel de administración demo
-│   │   └── 📁 entrar/
-│   ├── 📁 static/                     # Recursos estáticos clonados
-│   │   └── 📁 blog/                   # CSS, JS, imágenes del blog
-│   └── 📁 media/                      # Archivos multimedia
-│       ├── 📁 img_articulo/           # Imágenes de artículos
-│       ├── 📁 img_persona/            # Avatares y fotos
-│       └── 📁 img_proyecto/           # Portfolio de proyectos
-│
-└── 📁 metadatos.pythonanywhere.com/   # 🎯 SITIO CLONADO CON HTTRACK
-    ├── 📄 index.html                  # Página principal clonada
-    ├── 📄 help.html                   # Página de ayuda
-    ├── 📄 login.html                  # Login (deshabilitado)
-    ├── 📁 file/                       # Sistema de archivos navegable
-    │   ├── 📄 1.html, 📄 2.html       # Archivos individuales (1-141)
-    │   └── 📄 141.html                # Último archivo
-    ├── 📁 static/                     # Recursos estáticos HTTrack
-    │   ├── 📁 css/                    # Estilos preservados
-    │   └── 📁 js/                     # JavaScript funcional
-    └── 📁 uploads/                    # Archivos subidos (demostración)
-        ├── 📄 *.jpg, *.png            # Imágenes de ejemplo
-        ├── 📄 *.pdf, *.doc            # Documentos de prueba
-        └── 📄 *.mp3, *.mp4            # Media files
-```
-
 ## 🤝 Contribuir
 
 ### 🛠️ Configuración para Desarrollo
 
 ```bash
 # 1. Fork del repositorio en GitHub
-git clone https://github.com/tu-usuario/AICC108.202515.2315.git
+git clone https://github.com/Gabo-araya/AICC108.202515.2315.git
 cd AICC108.202515.2315
 
 # 2. Crear rama de desarrollo
